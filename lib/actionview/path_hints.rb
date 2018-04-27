@@ -18,8 +18,8 @@ module ActionView
 
     def cache_hit?
       rails_latest? ?
-          @view.view_renderer.cache :
-          @view.view_renderer.cache_hits[@template.virtual_path]
+          @view.view_renderer.cache_hits[@template.virtual_path] :
+          @view.view_renderer.cache
     end
 
     def rails_latest?
