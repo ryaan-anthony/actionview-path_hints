@@ -1,0 +1,1 @@
+# actionview-path_hints
