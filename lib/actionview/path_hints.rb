@@ -1,22 +1,33 @@
 module ActionView
   class PathHints
+    CONTAINER = %w(
+      position:relative
+      border:1px\ solid\ %s
+    )
+    LABEL = %w(
+      font-size:9px
+      background:beige
+      position:absolute
+      top:0
+      left:0
+    )
     def initialize(view, template)
       @view = view
       @template = template
     end
 
     def apply(output_buffer)
-      cache_color = cache_hit? ? 'red' : 'green'
-      container_style = "position: relative;border:1px solid #{cache_color}!important;"
-      label_style = "font-size: 9px;background:beige;position:absolute;top:0px;left:0px;"
-      path_hints = "<div style='#{container_style}'>"\
-    "<span style='#{label_style}'>#{@template.inspect}</span>"
-      output_buffer.prepend(path_hints.html_safe).concat('</div>'.html_safe)
+      output_buffer.prepend("<div style='#{styles(sprintf(CONTAINER, cached? ? 'green' : 'red'))}'>"\
+    "<span style='#{styles(LABEL)}'>#{@template.inspect}</span>".html_safe).concat('</div>'.html_safe)
     end
 
     private
 
-    def cache_hit?
+    def styles(values)
+      values.each { |value| "#{value}!important;" }.join
+    end
+
+    def cached?
       rails_latest? ?
           @view.view_renderer.cache_hits[@template.virtual_path] :
           @view.view_renderer.lookup_context.cache
