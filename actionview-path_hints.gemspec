@@ -1,6 +1,8 @@
+require 'actionview/path_hints/version'
+
 Gem::Specification.new do |s|
   s.name        = 'actionview-path_hints'
-  s.version     = '0.0.1'
+  s.version     = ActionViewPathHints::VERSION
   s.date        = '2018-04-28'
   s.summary     = "Path hints"
   s.description = "Path hints for partials"
