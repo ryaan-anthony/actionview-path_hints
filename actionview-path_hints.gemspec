@@ -1,3 +1,4 @@
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'actionview/path_hints/version'
 
 Gem::Specification.new do |s|
