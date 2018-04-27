@@ -1,18 +1,25 @@
 module ActionView
   class PathHints
-    def self.apply(view, template, output_buffer)
-      cache_color = cache_hit?(view, template) ? 'red' : 'green'
+    def initialize(view, template)
+      @view = view
+      @template = template
+    end
+
+    def apply(output_buffer)
+      cache_color = cache_hit? ? 'red' : 'green'
       container_style = "position: relative;border:1px solid #{cache_color}!important;"
       label_style = "font-size: 9px;background:beige;position:absolute;top:0px;left:0px;"
       path_hints = "<div style='#{container_style}'>"\
-    "<span style='#{label_style}'>#{template.inspect}</span>"
+    "<span style='#{label_style}'>#{@template.inspect}</span>"
       output_buffer.prepend(path_hints.html_safe).concat('</div>'.html_safe)
     end
 
     private
 
-    def cache_hit?(view, template)
-      rails_latest? ? view.view_renderer.cache : view.view_renderer.cache_hits[template.virtual_path]
+    def cache_hit?
+      rails_latest? ?
+          @view.view_renderer.cache :
+          @view.view_renderer.cache_hits[@template.virtual_path]
     end
 
     def rails_latest?
@@ -22,13 +29,17 @@ module ActionView
 
   PartialRenderer.class_eval do
     def render_partial
-      PathHints.apply(@view, @template, _render_partial)
+      path_hints.apply(_render_partial)
     end
 
     private
 
+    def path_hints
+      PathHints.new(@view, @template)
+    end
+
     # If there's a way to call super instead of copypasta let me know.
-    # pulled from actionview-5.1.6/lib/action_view/renderer/partial_renderer.rb:330
+    # This works for both rails 4 and 5
     def _render_partial
       instrument(:partial) do |payload|
         view, locals, block = @view, @locals, @block
@@ -46,7 +57,6 @@ module ActionView
         end
 
         content = layout.render(view, locals) { content } if layout
-        payload[:cache_hit] = view.view_renderer.cache_hits[@template.virtual_path]
         content
       end
     end
