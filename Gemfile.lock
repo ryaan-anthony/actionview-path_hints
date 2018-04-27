@@ -1,0 +1,17 @@
+PATH
+  remote: .
+  specs:
+    actionview-path_hints (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  actionview-path_hints!
+
+BUNDLED WITH
+   1.15.3
