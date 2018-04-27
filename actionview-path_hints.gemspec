@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Path hints for partials"
   s.authors     = ["Ryan Tulino"]
   s.email       = 'rtulino@gmail.com'
-  s.files       = ["lib/action_view/path_hints.rb"]
+  s.files       = ["lib/actionview/path_hints.rb"]
   s.homepage    = 'http://rubygems.org/gems/actionview-path_hints'
   s.license     = 'MIT'
 end

@@ -1,7 +1,7 @@
 #!/usr/bin/env rake
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
-require 'action_view/path_hints/version'
+require 'actionview/path_hints/version'
 
 desc "Release version #{ActionViewPathHints::VERSION} of the gem"
 task :release do
