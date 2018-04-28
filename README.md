@@ -17,7 +17,7 @@ All partials will be wrapped in a border, red for uncached, green for cached.
 
 Built for Rails 5 but added support for Rails 4. 
 
-Feel free to [submit issues](https://github.com/ryaan-anthony/actionview-path_hints/issues).
+Feel free to [submit issues](https://github.com/ryaan-anthony/actionview-path_hints/issues) or [help make it better](https://github.com/ryaan-anthony/actionview-path_hints/pulls).
 
 
 
