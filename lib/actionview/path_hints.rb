@@ -24,7 +24,7 @@ module ActionView
     private
 
     def styles(values)
-      values.each { |value| "#{value}!important;" }.join
+      values.map { |value| "#{value}!important;" }.join
     end
 
     def cached?
