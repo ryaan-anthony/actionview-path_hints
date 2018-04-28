@@ -22,4 +22,4 @@ Feel free to [submit issues](https://github.com/ryaan-anthony/actionview-path_hi
 
 
 
-[cache_test]: https://github.com/ryaan-anthony/actionview-path_hints/tree/master/docs/cache-test.png "Cache Test"
+[cache_test]: https://raw.githubusercontent.com/ryaan-anthony/actionview-path_hints/master/docs/cache-test.png
