@@ -17,7 +17,7 @@ module ActionView
     end
 
     def apply(output_buffer)
-      output_buffer.prepend("<div style='#{styles(sprintf(CONTAINER, cached? ? 'green' : 'red'))}'>"\
+      output_buffer.prepend("<div style='#{sprintf(styles(CONTAINER), cached? ? 'green' : 'red')}'>"\
     "<span style='#{styles(LABEL)}'>#{@template.inspect}</span>".html_safe).concat('</div>'.html_safe)
     end
 
